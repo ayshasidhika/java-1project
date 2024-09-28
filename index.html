@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #eef2f5;
+    background:url("https://img.freepik.com/free-vector/blue-white-gradient-abstract-background_53876-60241.jpg?t=st=1727247125~exp=1727250725~hmac=0df907c7a7079f2027aea0a55f8554e7d375f803f73df3874da6afccecdfbc12&w=740");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.calculator {
+    background-color: rgb(141 49 141 / 22%);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 6px 10px #4e479f;
+}
+/* .display{
+    padding: 4rem;
+} */
+
+.display input {
+    width: 340px;
+    /* width: 96.5%; */
+    height: 3rem;
+    padding: 8px;
+    border: none;
+    background-color: #2f3036;
+    color: white;
+    font-size: 2rem;
+    text-align: right;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+button {
+    padding: 20px;
+    font-size: 1.5rem;
+    border: none;
+    background-color: #e0e0e3;
+    color: #2f2f35;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:active {
+    background-color:#ff5050;
+}
+
+button.zero {
+    grid-column: span 2;
+}
+
+/* button:nth-child(4n + 1) {
+    background-color: #ff9999;
+ }  */
+
+button:nth-child(4n) {
+    background-color: rgb(141, 49, 141);
+    color: white;
+}
+button:nth-child(4n):hover{
+ background-color: grey;
+}
+button.equal {
+    background-color: #ff5050;
+    color: white;
+}
+
+    </style>
+</head>
+<body>
+   
+    <div class="calculator">
+        <div class="display">
+            <input type="text" id="display" disabled>
+        </div>
+        <div class="buttons">
+            <button onclick="clearDisplay()">AC</button>
+            <button onclick="appendValue('+/-')">+/-</button>
+            <button onclick="appendValue('%')">%</button>
+            <button onclick="appendValue('/')">/</button>
+
+            <button onclick="appendValue('7')">7</button>
+            <button onclick="appendValue('8')">8</button>
+            <button onclick="appendValue('9')">9</button>
+            <button onclick="appendValue('*')">*</button>
+
+            <button onclick="appendValue('4')">4</button>
+            <button onclick="appendValue('5')">5</button>
+            <button onclick="appendValue('6')">6</button>
+            <button onclick="appendValue('-')">-</button>
+
+            <button onclick="appendValue('1')">1</button>
+            <button onclick="appendValue('2')">2</button>
+            <button onclick="appendValue('3')">3</button>
+            <button onclick="appendValue('+')">+</button>
+
+            <button onclick="appendValue('0')" class="zero">0</button>
+            <button onclick="appendValue('.')">.</button>
+            <button onclick="calculate()">=</button>
+        </div>
+    </div>
+<script>
+    let display = document.getElementById('display');
+    //  Adds a clicked button's value to the display
+function appendValue(value) {
+    // replace 0 with the new value
+    if (display.value === '0' && value !== '.') {
+        display.value = value;
+    } else {
+        display.value += value;
+    }
+}
+// Resets the calculator's display to 0.
+function clearDisplay() {
+    display.value = '0';
+}
+// Evaluates the expression and shows the result.
+function calculate() {
+    try {
+        // calculate the result 
+        display.value = eval(display.value);
+    } catch (error) {
+        // there's an error display to 'Error'
+        display.value = 'Error';
+    }
+}
+
+</script>
+</body>
+</html>
